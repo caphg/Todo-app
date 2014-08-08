@@ -17,20 +17,34 @@
 
       <tbody>
 
-      <tr ng-repeat="theItem in myData.items">
-        <td>{{theItem.name}}</td>
-        <td>{{theItem.due_date}}</td>
-        <td>{{theItem.priority}}</td>
-        <td>{{theItem.done}}</td>
-        <td>{{theItem.description}}</td>
+      <tr ng-repeat="task in tasks">
+          <td ng-hide="editNameEnabled">{{task.name}} <span><a href="#" ng-click="editName()">Edit name</a></span></td>
+          <td ng-show="editNameEnabled"><input ng-model="newName"><span><button  ng-click="saveName(task.id, $index, newName)">Done!</button></span></td>
+
+        <td>{{task.due_date}}</td>
+
+        <td>{{task.priority}}</td>
+        <td>{{task.done}}</td>
+        <td>{{task.description}}</td>
       </tr>
 
 
       </tbody>
     </table>
 
+  <form>
+    Name <input type="text" required ng-model="addTaskName"><br />
+    Description <input type="text" required ng-model="addTaskDescription"><br />
+    Priority <input type="text" required ng-model="addTaskPriority"><br />
+    Due date <input type="text" required ng-model="addTaskDueDate"><br />
+    Done <input type="checkbox" ng-model="addTaskDone"><br />
+
+    <button ng-click="addTask(addTaskName, addTaskDescription, addTaskPriority, addTaskDone, addTaskDueDate)">Add new</button>
+
+  </form>
+
 </div>
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+
