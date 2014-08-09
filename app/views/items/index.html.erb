@@ -3,7 +3,59 @@
 
 <div ng-controller="TodoController" >
 
-    <table>
+  <div class="jumbotron">
+
+    <h4>Enter a new task and see how it pops up in the table below.</h4>
+
+    <form name="newItemForm" class="form-horizontal">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" required ng-model="addTaskName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input type="text" required ng-model="addTaskDescription">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="priority" class="col-sm-2 control-label">Priority</label>
+        <div class="col-sm-10">
+          <input type="text" required ng-model="addTaskPriority" placeholder="1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate" class="col-sm-2 control-label">Due date</label>
+        <div class="col-sm-10">
+          <input type="text" required ng-model="addTaskDueDate" placeholder="2014-06-01">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="done" class="col-sm-2 control-label">Done</label>
+        <div class="col-sm-10">
+          <input type="checkbox" ng-model="addTaskDone">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-default" ng-click="addTask(addTaskName, addTaskDescription, addTaskPriority, addTaskDone, addTaskDueDate)">Add new</button>
+        </div>
+      </div>
+
+
+    </form>
+
+  </div>
+
+
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -18,21 +70,21 @@
       <tbody>
 
       <tr ng-repeat="task in tasks">
-        <td ng-hide="editNameEnabled">{{task.name}} <span><a href="#" ng-click="editName()">Edit name</a></span></td>
-        <td ng-show="editNameEnabled"><input ng-model="newName"><span><button  ng-click="saveName(task.id, $index, newName)">Done!</button></span></td>
+        <td ng-hide="editNameEnabled">{{task.name}} <span><a href="#" ng-click="editName()"><span class="glyphicon glyphicon-pencil"></span></a></span></td>
+        <td ng-show="editNameEnabled"><input ng-model="newName"><button  ng-click="saveName(task.id, $index, newName)">Done!</button></td>
 
-        <td ng-hide="editDueDateEnabled">{{task.due_date}} <span><a href="#" ng-click="editDueDate()">Edit Due date</a></span></td>
-        <td ng-show="editDueDateEnabled"><input ng-model="newDueDate"><span><button ng-click="saveDueDate(task.id, $index, newDueDate)">Done!</button></span></td>
+        <td ng-hide="editDueDateEnabled">{{task.due_date}} <span><a href="#" ng-click="editDueDate()"><span class="glyphicon glyphicon-pencil"></span></a></span></td>
+        <td ng-show="editDueDateEnabled"><input ng-model="newDueDate"><button ng-click="saveDueDate(task.id, $index, newDueDate)">Done!</button></td>
 
-        <td ng-hide="editPriorityEnabled">{{task.priority}} <span><a href="#" ng-click="editPriority()">Edit priority</a></span></td>
-        <td ng-show="editPriorityEnabled"><input ng-model="newPriority"><span><button ng-click="savePriority(task.id, $index, newPriority)">Done!</button></span></td>
+        <td ng-hide="editPriorityEnabled">{{task.priority}} <span><a href="#" ng-click="editPriority()"><span class="glyphicon glyphicon-pencil"></span></a></span></td>
+        <td ng-show="editPriorityEnabled"><input ng-model="newPriority"><button ng-click="savePriority(task.id, $index, newPriority)">Done!</button></td>
 
-        <td>{{task.done}} <span><button ng-click="toggleDone(task.id, $index, task.done)">Change!</button></span></td>
+        <td>{{task.done}} <span><button ng-click="toggleDone(task.id, $index, task.done)"><span class="glyphicon glyphicon-pencil"></span></button></span></td>
 
-        <td ng-hide="editDescriptionEnabled">{{task.description}} <span><a href="#" ng-click="editDescription()">Edit description</a></span></td>
-        <td ng-show="editDescriptionEnabled"><input ng-model="newDescription"><span><button ng-click="saveDescription(task.id, $index, newDescription)">Done!</button></span></td>
+        <td ng-hide="editDescriptionEnabled">{{task.description}} <span><a href="#" ng-click="editDescription()"><span class="glyphicon glyphicon-pencil"></span></a></span></td>
+        <td ng-show="editDescriptionEnabled"><input ng-model="newDescription"><button ng-click="saveDescription(task.id, $index, newDescription)">Done!</button></td>
 
-        <td><a href="#" ng-click="deleteItem(task.id, $index)">Delete!</a> </td>
+        <td><a href="#" ng-click="deleteItem(task.id, $index)"><span class="glyphicon glyphicon-remove"></span></a> </td>
 
       </tr>
 
@@ -40,16 +92,7 @@
       </tbody>
     </table>
 
-  <form name="newItemForm">
-    Name <input type="text" required ng-model="addTaskName"><br />
-    Description <input type="text" required ng-model="addTaskDescription"><br />
-    Priority <input type="text" required ng-model="addTaskPriority"><br />
-    Due date <input type="text" required ng-model="addTaskDueDate"><br />
-    Done <input type="checkbox" ng-model="addTaskDone"><br />
 
-    <button ng-click="addTask(addTaskName, addTaskDescription, addTaskPriority, addTaskDone, addTaskDueDate)">Add new</button>
-
-  </form>
 
 </div>
 
