@@ -1,0 +1,7 @@
+This is an example project of a classic To-Do app written in Ruby on Rails as a backend and Angular.js as frontend.
+
+Technologies used:
+Ruby on Rails 4
+Twitter Bootstrap + Devise gem
+Angular.js
+Jquery
