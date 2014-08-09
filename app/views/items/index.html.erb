@@ -18,21 +18,29 @@
       <tbody>
 
       <tr ng-repeat="task in tasks">
-          <td ng-hide="editNameEnabled">{{task.name}} <span><a href="#" ng-click="editName()">Edit name</a></span></td>
-          <td ng-show="editNameEnabled"><input ng-model="newName"><span><button  ng-click="saveName(task.id, $index, newName)">Done!</button></span></td>
+        <td ng-hide="editNameEnabled">{{task.name}} <span><a href="#" ng-click="editName()">Edit name</a></span></td>
+        <td ng-show="editNameEnabled"><input ng-model="newName"><span><button  ng-click="saveName(task.id, $index, newName)">Done!</button></span></td>
 
-        <td>{{task.due_date}}</td>
+        <td ng-hide="editDueDateEnabled">{{task.due_date}} <span><a href="#" ng-click="editDueDate()">Edit Due date</a></span></td>
+        <td ng-show="editDueDateEnabled"><input ng-model="newDueDate"><span><button ng-click="saveDueDate(task.id, $index, newDueDate)">Done!</button></span></td>
 
-        <td>{{task.priority}}</td>
-        <td>{{task.done}}</td>
-        <td>{{task.description}}</td>
+        <td ng-hide="editPriorityEnabled">{{task.priority}} <span><a href="#" ng-click="editPriority()">Edit priority</a></span></td>
+        <td ng-show="editPriorityEnabled"><input ng-model="newPriority"><span><button ng-click="savePriority(task.id, $index, newPriority)">Done!</button></span></td>
+
+        <td>{{task.done}} <span><button ng-click="toggleDone(task.id, $index, task.done)">Change!</button></span></td>
+
+        <td ng-hide="editDescriptionEnabled">{{task.description}} <span><a href="#" ng-click="editDescription()">Edit description</a></span></td>
+        <td ng-show="editDescriptionEnabled"><input ng-model="newDescription"><span><button ng-click="saveDescription(task.id, $index, newDescription)">Done!</button></span></td>
+
+        <td><a href="#" ng-click="deleteItem(task.id, $index)">Delete!</a> </td>
+
       </tr>
 
 
       </tbody>
     </table>
 
-  <form>
+  <form name="newItemForm">
     Name <input type="text" required ng-model="addTaskName"><br />
     Description <input type="text" required ng-model="addTaskDescription"><br />
     Priority <input type="text" required ng-model="addTaskPriority"><br />
